@@ -25,6 +25,7 @@ func main() {
 	routes.PredictRegisterRoutes(mux)
 	routes.RegisterRoutesEtablissement(mux)
 	routes.RegisterRoutesAdmin(mux)
+	routes.RegisterRoutesPersonnel(mux)
 	log.Println("serveur: localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", mux))
 }
