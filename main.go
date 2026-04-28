@@ -7,6 +7,7 @@ import (
 
 	"github.com/MaminirinaEdwino/backmadacare/src/config"
 	"github.com/MaminirinaEdwino/backmadacare/src/controllers"
+	"github.com/MaminirinaEdwino/backmadacare/src/middlewares"
 	"github.com/MaminirinaEdwino/backmadacare/src/routes"
 	"github.com/MaminirinaEdwino/gobayes"
 )
@@ -30,5 +31,6 @@ func main() {
 	routes.RegisterRoutesPatient(mux)
 	routes.RegisterRoutesAmbulance(mux)
 	log.Println("serveur: localhost:8080")
-	log.Fatal(http.ListenAndServe(":8080", mux))
+	secureRoutes := middlewares.EnableCORS(mux)
+	log.Fatal(http.ListenAndServe(":8080", secureRoutes))
 }
