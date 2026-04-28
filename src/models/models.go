@@ -9,11 +9,13 @@ import (
 type RequestBody struct {
 	Evidence map[string]int `json:"evidence"`
 	Target   string         `json:"target"`
+	Region   string         `json:"region"`
 }
 
 type ResponseBody struct {
-	Maladie string `json:"maladie"`
-	Urgence string `json:"urgence"`
+	Maladie       string          `json:"maladie"`
+	Urgence       string          `json:"urgence"`
+	Etablissement []Etablissement `json:"etablissement"`
 }
 
 type Etablissement struct {

@@ -49,6 +49,16 @@ func Predicthandler(w http.ResponseWriter, r *http.Request) {
 		Maladie: maladie,
 	}
 
+	
+
+    // Utilisation de GORM pour filtrer
+    result := config.DB.Where("region = ?", req.Region).Find(&resp.Etablissement)
+    
+    if result.Error != nil {
+        http.Error(w, "Erreur lors de la recherche", http.StatusInternalServerError)
+        return
+    }
+
 	resp.Urgence = dataUrgence.Rules[maladie]
 	w.Header().Set("Content-Type", "application/json")
 	err := json.NewEncoder(w).Encode(resp)
