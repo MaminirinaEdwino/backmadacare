@@ -1,0 +1,85 @@
+{
+    "maladie_rules": [
+        {
+            "target_node": "Maladie",
+            "target_state": "Pesta bubonique (Pesta)",
+            "conditions": {
+                "bokotra manaintaina ao amin'ny ventriny na ankihibe": "Oui",
+                "tazo tampoka \u003e 39°C": "Oui"
+            },
+            "weight": 10
+        },
+        {
+            "target_node": "Maladie",
+            "target_state": "Tazomoka (Paludisme/Malaria)",
+            "conditions": {
+                "fandroana be": "Oui",
+                "mangovitra mafy": "Oui",
+                "tazo telo andro na efatra andro": "Oui"
+            },
+            "weight": 1
+        },
+        {
+            "target_node": "Maladie",
+            "target_state": "Bilharziose (Schistosomiase)",
+            "conditions": {
+                "fanaintainana rehefa misitrana": "Oui",
+                "rà ao amin'ny pivia (hématurie terminale)": "Oui"
+            },
+            "weight": 10
+        },
+        {
+            "target_node": "Maladie",
+            "target_state": "Neurocysticercose",
+            "conditions": {
+                "aretin-doha maharitra": "Oui",
+                "fihazonana ao anatiny ny atidoha (hypertension intracrânienne)": "Oui",
+                "tsindoka (épilepsie)": "Oui"
+            },
+            "weight": 30
+        },
+        {
+            "target_node": "Maladie",
+            "target_state": "Tazo Tifoida (Fièvre Typhoïde)",
+            "conditions": {
+                "pouls tsy mirindra amin'ny tazo (pouls dissocié)": "Oui",
+                "tazo maharitra 39-40°C": "Oui",
+                "tuphos (fahasahiranana saina sy fadiranovana tanteraka)": "Oui"
+            },
+            "weight": 50
+        },
+        {
+            "target_node": "Gravite",
+            "target_state": "élevée",
+            "conditions": {
+                "Maladie": "Bilharziose (Schistosomiase)"
+            }
+        },
+        {
+            "target_node": "Gravite",
+            "target_state": "critique",
+            "conditions": {
+                "Maladie": "Neurocysticercose"
+            }
+        },{
+            "target_node": "Gravite",
+            "target_state": "élevée",
+            "conditions": {
+                "Maladie": "Pesta bubonique (Pesta)"
+            }
+        },{
+            "target_node": "Gravite",
+            "target_state": "élevée",
+            "conditions": {
+                "Maladie": "Tazo Tifoida (Fièvre Typhoïde)"
+            }
+        },
+        {
+            "target_node": "Gravite",
+            "target_state": "élevée",
+            "conditions": {
+                "Maladie": "Tazomoka (Paludisme/Malaria)"
+            }
+        }
+    ]
+}

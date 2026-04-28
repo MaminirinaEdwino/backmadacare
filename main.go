@@ -19,7 +19,7 @@ func main() {
 	fmt.Println("back Mada care AI system")
 	controllers.Network = gobayes.NewNetwork()
 	config.SetupMedicalNetwork(controllers.Network)
-	err := config.SyncMedicalRules(controllers.Network, "src/config/data/rules.json")
+	err := config.SyncMedicalRules(controllers.Network, "src/config/data/res.json")
 	if err != nil {
 		log.Fatal("erreur : ", err)
 	}

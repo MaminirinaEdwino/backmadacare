@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -26,7 +27,7 @@ func FindPossibleMaladie(prediction map[string]float64) string {
 }
 
 func Predicthandler(w http.ResponseWriter, r *http.Request) {
-	dataUrgence := config.SyncMedicalUrgenceRules("src/config/data/urgence.json")
+	dataUrgence := config.SyncMedicalUrgenceRules("src/config/data/urgence2.json")
 	var req models.RequestBody
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		http.Error(w, "Requête JSON invalide", http.StatusBadRequest)
@@ -60,6 +61,7 @@ func Predicthandler(w http.ResponseWriter, r *http.Request) {
     }
 
 	resp.Urgence = dataUrgence.Rules[maladie]
+	fmt.Println(predictions)
 	w.Header().Set("Content-Type", "application/json")
 	err := json.NewEncoder(w).Encode(resp)
 	if err != nil {

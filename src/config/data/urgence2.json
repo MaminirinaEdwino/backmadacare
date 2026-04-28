@@ -1,0 +1,9 @@
+{
+    "urgences": {
+        "Bilharziose (Schistosomiase)": "élevée",
+        "Neurocysticercose": "critique",
+        "Pesta bubonique (Pesta)": "critique",
+        "Tazo Tifoida (Fièvre Typhoïde)": "élevée",
+        "Tazomoka (Paludisme/Malaria)": "élevée"
+    }
+}
