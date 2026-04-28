@@ -1,0 +1,11 @@
+{
+    "urgences": {
+        "Paludisme grave": "Critique",
+        "AVC": "Critique",
+        "Pneumonie": "Elevee",
+        "Otite": "Faible",
+        "Paludisme": "Elevee",
+        "Grippe": "Moyen",
+        "Covid-19": "Elevee"
+    }
+}

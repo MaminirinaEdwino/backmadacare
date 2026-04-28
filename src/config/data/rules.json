@@ -9,16 +9,16 @@
                 "frissons": "Oui",
                 "zone_endemique": "Oui"
             },
-            "weight": 0.9
+            "weight": 19.9
         },
         {
             "target_node": "Maladie",
             "target_state": "Paludisme grave",
             "conditions": {
                 "convulsion": "Oui",
-                "age": "<5"
+                "enfant": "Oui"
             },
-            "weight": 1.0
+            "weight": 1.5
         },
         {
             "target_node": "Maladie",
@@ -28,7 +28,7 @@
                 "toux": "Oui",
                 "courbatures": "Oui"
             },
-            "weight": 0.7
+            "weight": 2.7
         },
         {
             "target_node": "Maladie",
@@ -37,7 +37,7 @@
                 "perte_odorat": "Oui",
                 "toux_seche": "Oui"
             },
-            "weight": 0.9
+            "weight": 0.5
         },
         {
             "target_node": "Maladie",
@@ -55,7 +55,7 @@
                 "diarrhée": "Oui",
                 "deshydratation": "Oui"
             },
-            "weight": 0.9
+            "weight": 0.4
         },
         {
             "target_node": "Maladie",
@@ -64,7 +64,7 @@
                 "respiration_sifflante": "Oui",
                 "essoufflement": "Oui"
             },
-            "weight": 0.9
+            "weight": 3.9
         },
         {
             "target_node": "Maladie",
@@ -73,7 +73,7 @@
                 "diarrhee_severe": "Oui",
                 "deshydratation": "Oui"
             },
-            "weight": 1.0
+            "weight": 5.0
         },
         {
             "target_node": "Maladie",
@@ -88,9 +88,10 @@
             "target_node": "Maladie",
             "target_state": "Infarctus",
             "conditions": {
-                "douleur_thoracique": "Oui"
+                "douleur_thoracique": "Oui",
+                "fievre": "Non"
             },
-            "weight": 1.0
+            "weight": 10.0
         },
         {
             "target_node": "Maladie",
@@ -100,39 +101,6 @@
                 "raideur_nuque": "Oui"
             },
             "weight": 1.0
-        },
-        {
-            "comment": "--- ÉTAGE 2 : DÉTERMINATION DE LA GRAVITÉ ---",
-            "target_node": "Urgence",
-            "target_state": "Critique",
-            "conditions": {
-                "Maladie": "Paludisme grave"
-            },
-            "weight": 100.0
-        },
-        {
-            "target_node": "Urgence",
-            "target_state": "Critique",
-            "conditions": {
-                "Maladie": "AVC"
-            },
-            "weight": 100.0
-        },
-        {
-            "target_node": "Urgence",
-            "target_state": "Elevee",
-            "conditions": {
-                "Maladie": "Pneumonie"
-            },
-            "weight": 80.0
-        },
-        {
-            "target_node": "Urgence",
-            "target_state": "Faible",
-            "conditions": {
-                "Maladie": "Otite"
-            },
-            "weight": 10.0
         }
     ]
 }

@@ -5,13 +5,28 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/MaminirinaEdwino/backmadacare/src/config"
 	"github.com/MaminirinaEdwino/backmadacare/src/models"
 	"github.com/MaminirinaEdwino/gobayes"
 )
 
 var Network *gobayes.Network
 
+func FindPossibleMaladie(prediction map[string]float64) string {
+	var prob float64
+	prob = 0
+	maladie := ""
+	for key, value := range prediction {
+		if value > float64(prob) {
+			prob = value
+			maladie = key
+		}
+	}
+	return maladie
+}
+
 func Predicthandler(w http.ResponseWriter, r *http.Request) {
+	dataUrgence := config.SyncMedicalUrgenceRules("src/config/data/urgence.json")
 	var req models.RequestBody
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		http.Error(w, "Requête JSON invalide", http.StatusBadRequest)
@@ -29,11 +44,12 @@ func Predicthandler(w http.ResponseWriter, r *http.Request) {
 	for i, stateName := range targetNode.States {
 		predictions[stateName] = resultFactor.Values[i]
 	}
+	maladie := FindPossibleMaladie(predictions)
 	resp := models.ResponseBody{
-		Target:      req.Target,
-		Predictions: predictions,
+		Maladie: maladie,
 	}
 
+	resp.Urgence = dataUrgence.Rules[maladie]
 	w.Header().Set("Content-Type", "application/json")
 	err := json.NewEncoder(w).Encode(resp)
 	if err != nil {

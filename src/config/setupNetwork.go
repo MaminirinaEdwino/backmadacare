@@ -28,7 +28,7 @@ func SetupMedicalNetwork(net *gobayes.Network) {
 
 	// Conditions environnementales ou démographiques
 	net.AddNode("zone_endemique", []string{"Non", "Oui"})
-	net.AddNode("age_inf_5", []string{"Non", "Oui"})
+	net.AddNode("enfant", []string{"Non", "Oui"})
 
 	// --- ÉTAGE 2 : LE DIAGNOSTIC (Enfant) ---
 	// Liste des maladies possibles (les états du nœud Maladie)
@@ -42,7 +42,7 @@ func SetupMedicalNetwork(net *gobayes.Network) {
 	// On lie les symptômes vers la maladie
 	net.AddEdge("fievre", "Maladie")
 	net.AddEdge("zone_endemique", "Maladie")
-	net.AddEdge("age_inf_5", "Maladie")
+	net.AddEdge("enfant", "Maladie")
 	net.AddEdge("toux", "Maladie")
 	net.AddEdge("perte_odorat", "Maladie")
 	net.AddEdge("difficulte_respiratoire", "Maladie")
@@ -80,4 +80,22 @@ func SyncMedicalRules(net *gobayes.Network, rulesPath string) error {
 	}
 
 	return nil
+}
+
+type dataUrgence struct {
+	Rules map[string]string `json:"urgences"`
+}
+
+func SyncMedicalUrgenceRules(rulesPath string) dataUrgence {
+	file, err := os.Open(rulesPath)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	var data dataUrgence
+	if err := json.NewDecoder(file).Decode(&data); err != nil {
+		log.Fatal(err)
+	}
+	return data
 }
