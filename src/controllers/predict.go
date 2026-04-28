@@ -33,9 +33,9 @@ func Predicthandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	resultFactor := Network.Query(req.Target, req.Evidence)
+	resultFactor := Network.Query("Maladie", req.Evidence)
 
-	targetNode, exists := Network.Nodes[req.Target]
+	targetNode, exists := Network.Nodes["Maladie"]
 	if !exists {
 		http.Error(w, "Nœud cible introuvable dans le réseau", http.StatusNotFound)
 		return

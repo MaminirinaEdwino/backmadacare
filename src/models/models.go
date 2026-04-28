@@ -8,7 +8,6 @@ import (
 
 type RequestBody struct {
 	Evidence map[string]int `json:"evidence"`
-	Target   string         `json:"target"`
 	Region   string         `json:"region"`
 }
 
