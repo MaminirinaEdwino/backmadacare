@@ -30,7 +30,8 @@ func main() {
 	routes.RegisterRoutesPersonnel(mux)
 	routes.RegisterRoutesPatient(mux)
 	routes.RegisterRoutesAmbulance(mux)
+	routes.RegisterRoutesCapacite(mux)
 	log.Println("serveur: localhost:8080")
 	secureRoutes := middlewares.EnableCORS(mux)
-	log.Fatal(http.ListenAndServe(":8080", secureRoutes))
+	log.Fatal(http.ListenAndServe("0.0.0.0:8080", secureRoutes))
 }

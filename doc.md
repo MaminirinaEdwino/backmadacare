@@ -5,6 +5,11 @@
 **Endpoint:** `GET` `{{host}}/ambulances`  
 
 ---
+## capacite
+
+**Endpoint:** `GET` `{{host}}/capacites`  
+
+---
 ## delete ambulances
 
 **Endpoint:** `DELETE` `{{host}}/ambulances/2`  
@@ -72,6 +77,21 @@
     "refference": "ambul 2",
     "chauffeur_id": 5,
     "status": "libre"
+}
+```
+### Headers
+- **Content-Type**: application/json
+
+---
+## post capacites
+
+**Endpoint:** `POST` `{{host}}/capacites`  
+### Request Body (JSON)
+```json
+{
+    "maladies": "grippe,cholera",
+    "espaces": 20,
+    "etablissement_id": 2
 }
 ```
 ### Headers

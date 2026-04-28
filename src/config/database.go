@@ -29,6 +29,7 @@ func ConnectDB() {
 		&models.Personnel{},
 		&models.Patient{},
 		&models.Ambulance{},
+		&models.Capacite{},
 	)
 	
 	if err != nil {

@@ -65,3 +65,11 @@ type Ambulance struct {
 	Chauffeur   Personnel `gorm:"constraint:OnDelete:CASCADE;" json:"-"`
 	Status      string    `json:"status"`
 }
+
+type Capacite struct {
+	gorm.Model
+	Maladies        string        `json:"maladies"` // Ex: "Paludisme", "COVID-19"
+	Espaces         int           `json:"espaces"`  // Ex: "15 lits", "5 chambres"
+	EtablissementID uint          `json:"etablissement_id"`
+	Etablissement   Etablissement `gorm:"constraint:OnDelete:CASCADE;" json:"-"`
+}
