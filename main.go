@@ -23,7 +23,7 @@ func main() {
 	}
 	mux := http.NewServeMux()
 	routes.PredictRegisterRoutes(mux)
-
+	routes.RegisterRoutesEtablissement(mux)
 	log.Println("serveur: localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", mux))
 }
