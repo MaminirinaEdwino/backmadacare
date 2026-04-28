@@ -13,7 +13,7 @@ var DB *gorm.DB
 
 func ConnectDB() {
 	// Charge normalement ces infos depuis un fichier .env
-	dsn := "host=localhost user=postgres password=root dbname=seal_db port=5432 sslmode=disable"
+	dsn := "host=localhost user=postgres password=root dbname=madacare port=5432 sslmode=disable"
 	
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {

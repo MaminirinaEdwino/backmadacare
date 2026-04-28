@@ -14,6 +14,7 @@ import (
 
 
 func main() {
+	config.ConnectDB()
 	fmt.Println("back Mada care AI system")
 	controllers.Network = gobayes.NewNetwork()
 	config.SetupMedicalNetwork(controllers.Network)

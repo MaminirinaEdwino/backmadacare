@@ -29,7 +29,7 @@ type Admin struct {
 	Nom             string        `json:"nom"`
 	Prenom          string        `json:"prenom"`
 	Username        string        `gorm:"unique;not null" json:"username"`
-	Mdp             string        `json:"-"` // "-" pour ne pas exposer le mot de passe en JSON
+	Mdp             string        `json:"mdp"` // "-" pour ne pas exposer le mot de passe en JSON
 	Email           string        `gorm:"unique" json:"email"`
 	EtablissementID uint          `json:"etablissement_id"`
 	Etablissement   Etablissement `gorm:"constraint:OnDelete:CASCADE;" json:"-"`
