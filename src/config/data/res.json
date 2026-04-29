@@ -36,7 +36,7 @@
                 "fihazonana ao anatiny ny atidoha (hypertension intracrânienne)": "Oui",
                 "tsindoka (épilepsie)": "Oui"
             },
-            "weight": 30
+            "weight": 3
         },
         {
             "target_node": "Maladie",
@@ -47,39 +47,6 @@
                 "tuphos (fahasahiranana saina sy fadiranovana tanteraka)": "Oui"
             },
             "weight": 50
-        },
-        {
-            "target_node": "Gravite",
-            "target_state": "élevée",
-            "conditions": {
-                "Maladie": "Bilharziose (Schistosomiase)"
-            }
-        },
-        {
-            "target_node": "Gravite",
-            "target_state": "critique",
-            "conditions": {
-                "Maladie": "Neurocysticercose"
-            }
-        },{
-            "target_node": "Gravite",
-            "target_state": "élevée",
-            "conditions": {
-                "Maladie": "Pesta bubonique (Pesta)"
-            }
-        },{
-            "target_node": "Gravite",
-            "target_state": "élevée",
-            "conditions": {
-                "Maladie": "Tazo Tifoida (Fièvre Typhoïde)"
-            }
-        },
-        {
-            "target_node": "Gravite",
-            "target_state": "élevée",
-            "conditions": {
-                "Maladie": "Tazomoka (Paludisme/Malaria)"
-            }
         }
     ]
 }
