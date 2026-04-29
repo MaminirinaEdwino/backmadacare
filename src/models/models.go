@@ -15,6 +15,7 @@ type ResponseBody struct {
 	Maladie       string          `json:"maladie"`
 	Urgence       string          `json:"urgence"`
 	Etablissement []Etablissement `json:"etablissement"`
+	Ambulance     []Ambulance     `json:"ambulances"`
 }
 
 type Etablissement struct {

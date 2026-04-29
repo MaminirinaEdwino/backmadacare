@@ -39,7 +39,7 @@ func Predicthandler(w http.ResponseWriter, r *http.Request) {
 		"fihazonana ao anatiny ny atidoha (hypertension intracrânienne)",
 		"tsindoka (épilepsie)",
 		"pouls tsy mirindra amin'ny tazo (pouls dissocié)",
-		"tazo maharitra 39-40°C", 
+		"tazo maharitra 39-40°C",
 		"tuphos (fahasahiranana saina sy fadiranovana tanteraka)",
 	}
 	dataUrgence := config.SyncMedicalUrgenceRules("src/config/data/urgence2.json")
@@ -54,7 +54,7 @@ func Predicthandler(w http.ResponseWriter, r *http.Request) {
 		_, exist := req.Evidence[val]
 		if exist {
 			Evidence[val] = 1
-		}else{
+		} else {
 			Evidence[val] = 0
 		}
 	}
@@ -75,15 +75,26 @@ func Predicthandler(w http.ResponseWriter, r *http.Request) {
 		Maladie: maladie,
 	}
 
-	
+	// Utilisation de GORM pour filtrer
+	result := config.DB.Where("region = ? ", req.Region).Find(&resp.Etablissement)
+	for _, val := range resp.Etablissement {
+		fmt.Println(val.Nom, val.ID)
+		var ambulances []models.Ambulance = []models.Ambulance{}
+		result = config.DB.Raw("select ambulances.* from ambulances join personnels on chauffeur_id = personnels.id join etablissements on personnels.etablissement_id = etablissements.id where etablissements.id = ? AND ambulances.status = 'libre'", val.ID).Find(&ambulances)
+		fmt.Println("amb", len(ambulances))
+		// for _, i := range personnels {
+		// 	fmt.Println(i.ID)
+		// 	var ambulances []models.Ambulance = []models.Ambulance{}
+		// 	result = config.DB.Where("chauffeur_id = ? AND status = 'libre'", i.ID).Find(&ambulances)
+		// 	fmt.Println("ambulances ",ambulances)
+		resp.Ambulance = append(resp.Ambulance, ambulances...)
+		// }
 
-    // Utilisation de GORM pour filtrer
-    result := config.DB.Where("region = ?", req.Region).Find(&resp.Etablissement)
-    
-    if result.Error != nil {
-        http.Error(w, "Erreur lors de la recherche", http.StatusInternalServerError)
-        return
-    }
+	}
+	if result.Error != nil {
+		http.Error(w, "Erreur lors de la recherche", http.StatusInternalServerError)
+		return
+	}
 
 	resp.Urgence = dataUrgence.Rules[maladie]
 	fmt.Println(predictions)
